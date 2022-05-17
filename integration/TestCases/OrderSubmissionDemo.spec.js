@@ -13,7 +13,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
       })
     it('verify user can login', function()
 {
-    cy.login(this.data.Username,this.data.Password)
+    cy.Retailer_login(this.data.Username,this.data.Password)
     cy.get(':nth-child(3) > .navtext > .with_arrow > span').click();
     cy.get("a[data-id='255']").click({force: true});
     cy.get('#inseasonReleases > .release-links > :nth-child(1) > .card-link > .d-inline-block > .release-name').click()
@@ -26,14 +26,6 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     cy.get('.sc-jWBwVP').click()
     cy.get('.modal-footer > .d-flex > .sc-gzVnrw > .custom-control-label > .undefined').click()
     cy.get('.modal-footer > .btn-primary').click()
-
-
 })
-
-
-
-
-
-
 
   })
