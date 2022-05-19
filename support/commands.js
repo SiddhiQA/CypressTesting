@@ -27,8 +27,7 @@ Cypress.Commands.add("DLS_import_details", (Brand_Name,Release_Name,Format) =>{
         // release selection
         cy.get('select#product_upload_release').select(Release_Name).should('have.value', '2297')
         //format selection
-        cy.get('#product_upload_format').select(Format).should('have.value','supplier')
-        
+        cy.get('#product_upload_format').select(Format).should('have.value','supplier')        
 })
 Cypress.Commands.add("DLS_Valid_File_import", (Upload_file) =>{
         //attach file
@@ -64,8 +63,7 @@ Cypress.Commands.add('ATS_Details', (Brand_Name)=>{
         cy.get('a[href="/events/ats"]').click({force:true})
         cy.get('.icon-plus').click();
         // brand selection:
-        cy.get('#audit_brand').select(Brand_Name) 
-       
+        cy.get('#audit_brand').select(Brand_Name)   
 })
 Cypress.Commands.add('ATS_Valid_File_Import', (Upload_Valid_ATS_file)=>{
         //attach file
