@@ -60,7 +60,7 @@ Cypress.Commands.add("DLS_Invalid_File_import", (Upload_file) =>{
     })
 Cypress.Commands.add('ATS_Details', (Brand_Name)=>{
         cy.get(':nth-child(4) > .navtext > .with_arrow > span').click({force:true}).click()
-        cy.get('a[href="/events/ats"]').click({force:true})
+        cy.get('a[href="/events/ats"]').eq(0).click({force:true})
         cy.get('.icon-plus').click();
         // brand selection:
         cy.get('#audit_brand').select(Brand_Name) 
