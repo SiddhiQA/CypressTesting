@@ -1,0 +1,24 @@
+{
+  "name": "cypresstesting",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SiddhiQA/CypressTesting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SiddhiQA/CypressTesting/issues"
+  },
+  "homepage": "https://github.com/SiddhiQA/CypressTesting#readme",
+  "devDependencies": {
+    "cypress": "^9.6.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-wait-until": "^1.7.2"
+  }
+}
