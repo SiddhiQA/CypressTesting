@@ -3,28 +3,31 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     console.log(err);
     return false;
   })
-describe('Upload File', ()=>{
-  before(function () {
-    cy.fixture('Adminlogin').then(function (data) {
-      this.data = data;
+  describe('upload File', () => {
+    let data;
+    let data1;
+    before(function () {
+      cy.fixture('Adminlogin').then(function (fdata) {
+        data = fdata;
+      })
+      cy.fixture('DLS Import').then(function (fdata1) {
+        data1 = fdata1;
+      })
     })
+  beforeEach("",()=>{
+    cy.login(data.Username, data.Password)
   })
-  before(function () {
-    cy.fixture('DLS Import').then(function (data1) {
-      this.data1 = data1;
-    })
+
+  afterEach("",()=>{
+    cy.logout()
   })
-/*it('Verify user should be able to import valid DLS file', function(){
-  cy.Admin_login(this.data.Username,this.data.Password)
-  cy.DLS_import_details(this.data1.Brand_Name,this.data1.Release_Name,this.data1.Format)
-  cy.DLS_Valid_File_import(this.data1.Upload_Valid_file)  
- // cy.Admin_logout()
-})*/
+it('Verify user should be able to import valid DLS file', function(){
+  cy.dls_import_details(data1.Brand_Name,data1.Release_Name,data1.Format)
+  cy.dls_Valid_File_import(data1.Upload_Valid_file)  
+})
 it('verify user should not be able to import invalid DLS file', function(){
-  cy.Admin_login(this.data.Username, this.data.Password)
-  cy.DLS_import_details(this.data1.Brand_Name,this.data1.Release_Name,this.data1.Format)
-  cy.DLS_Invalid_File_import(this.data1.Upload_Invalid_file)
- // cy.Admin_logout()
+  cy.dls_import_details(data1.Brand_Name,data1.Release_Name,data1.Format)
+  cy.dls_Invalid_File_import(data1.Upload_Invalid_file)
 })
 })
 
