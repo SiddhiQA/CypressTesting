@@ -1,0 +1,9 @@
+{
+    "Brand_Name":"C.O.D.E",
+    "Release_Name":"coderelease",
+    "Format":"supplier",  
+    "Upload_Valid_file":"C.O.D.E_Valid_DLS.csv",
+    "Upload_Invalid_file":"C.O.D.E_DLS Invalid.csv",
+    "Upload_Valid_ATS_file":"C-O-D-E_Valid_ATS.csv",
+    "Upload_Invalid_ATS_file":"C-O-D-E_ATS Invalid.csv"
+}

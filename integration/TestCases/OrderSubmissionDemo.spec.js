@@ -7,7 +7,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   describe('MyTestSuite',() =>{
 
     before(function () {
-        cy.fixture('example').then(function (data) {
+        cy.fixture('Retailerlogin').then(function (data) {
           this.data = data;
         })
       })
