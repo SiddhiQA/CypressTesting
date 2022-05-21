@@ -1,0 +1,3 @@
+export const constants = {
+  response: 'createorder.response.body.data.order_number'
+}

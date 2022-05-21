@@ -83,11 +83,86 @@ Cypress.Commands.add('create_BuyPlan', () => {
     cy.get(':nth-child(3) > .navtext > .with_arrow > span').click();
     cy.get("a[data-id='255']").click({ force: true });
     cy.get('#inseasonReleases > .release-links > :nth-child(1) > .card-link > .d-inline-block > .release-name').click()
-    cy.get('body > div:nth-child(2) > div:nth-child(2) > main:nth-child(2) > section:nth-child(2) > div:nth-child(2) > button:nth-child(2)').click()
+    cy.get('body > div:nth-child(2) > div:nth-child(2) > main:nth-child(2) > section:nth-child(2) > div:nth-child(2) > button:nth-child(2)').click({force:true})
     cy.get('div:nth-child(3) div:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) img:nth-child(1)').click({force:true})
     cy.get('[data-product-id="171940"][data-release-id="2297"] > .buyplan > .actions > .sc-eqIVtm > .item-quantity > span > a > .cart-icon').click({force:true})
     cy.get(':nth-child(4) > :nth-child(3) > div > .sc-jTzLTM').type('20')
     cy.get(':nth-child(5) > :nth-child(4) > div > .sc-jTzLTM').type('10')
     cy.get('.h4 > .close > span').click({force:true})
     cy.get('div[class="sc-jAaTju dKpxlZ banner-caption"] a').click()
+})
+Cypress.Commands.add('edit_buyplan', () =>{
+    cy.get('.ag-row > [aria-colindex="2"]').should('be.visible').click()
+    cy.log('select existing buyplan')
+    cy.get('.btn.btn-sm.btn-secondary.btn-icon').should('have.attr','target')
+    cy.get('.icon-edit').click({ force: true })
+    cy.url().should('include', 'buyplan_detail')
+    cy.get(':nth-child(6) > :nth-child(5) > div > .sc-jTzLTM').type('10')
+   // cy.get('.sc-jWBwVP.giYJan.btn.btn-success').click()
+})
+Cypress.Commands.add('submit_order_Button', () =>{
+
+    cy.get('.sc-jWBwVP.giYJan.btn.btn-success').click()
+
+})
+Cypress.Commands.add('submit_order', () =>{
+    cy.log('Click on submit Order')
+  //  cy.get('.sc-jWBwVP').click()
+    cy.get('.modal-footer > .btn-primary').click()
+})
+
+Cypress.Commands.add('order_details', () =>
+{
+    //radio button
+    cy.get('input[type="radio"]').should('be.checked')
+    cy.get('.sc-gPEVay.kfibxa').should('have.text','Shipping Address (default)')
+    //ID
+    cy.get('input#order_number').should('have.attr','disabled')
+    //Retailer
+    cy.get('#retailer_id').should('have.value','BrandFactoryRetailer')
+    //Purchase order
+    cy.get('#customer_purchase_order').type('1234')
+    //Delivery instruction
+    cy.get('#delivery_instructions').type('Handle with care')
+    //Order total
+    cy.get('.modal-body > .sc-jDwBTQ > .total-price-wrapper > label').should('be.visible')
+   // cy.get('.modal-body > .sc-jDwBTQ > .total-price-wrapper > label').should('contain.value',total)
+    //number of items
+    cy.get('.modal-body > .sc-jDwBTQ > .total-items-count-wrapper > label').should('be.visible')
+   // cy.get('.modal-body > .sc-jDwBTQ > .total-items-count-wrapper > span').should('contain.value',items)
+    //original total
+    cy.get(':nth-child(1) > .invoice-header').should('be.visible')
+    //cy.get('.float-right > tbody > :nth-child(1) > :nth-child(2)').should('contain.value',originaltotal)
+    //order discount
+    cy.get(':nth-child(2) > .invoice-header').should('be.visible')
+    //cy.get('.float-right > tbody > :nth-child(2) > :nth-child(2)').should('contain.value',discountprice)
+    //total
+    cy.get(':nth-child(3) > .invoice-header').should('be.visible')
+    //cy.get('.float-right > tbody > :nth-child(3) > :nth-child(2)').should('contain.value','total')
+    //submit button before TC check
+  //  cy.get('.modal-footer > .btn-primary').should('have.attr','disabled')
+    //Tearms and conditions
+    cy.get('.modal-footer > .d-flex > .sc-gzVnrw > .custom-control-label > .undefined').click()
+    //submit button after TC check 
+})
+Cypress.Commands.add('report_page', () =>
+{
+    //Select Report tab 
+    cy.get(':nth-child(4) > .nav-link').click()
+    cy.get('.sc-hqyNC > :nth-child(1)').should('be.visible')
+    cy.get('.sc-frDJqD.jIzkzc').then(($total)=>{
+    var total1=$total.text()
+    /*var total2=total1.split('&nbsp;',)
+    cy.log(typeof(total2))
+    var str1=total1[0]
+    var str2=total1[1]
+    cy.log(str1)
+    cy.log(str2)*/
+//     cy.log(typeof(total2))
+//     var beforedisc=total2[0];
+//     cy.log(beforedisc)
+//     var afterdisc=total2[1];
+//     cy.log(afterdisc)
+ })
+   
 })
