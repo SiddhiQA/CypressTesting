@@ -150,8 +150,17 @@ Cypress.Commands.add('report_page', () =>
     //Select Report tab 
     cy.get(':nth-child(4) > .nav-link').click()
     cy.get('.sc-hqyNC > :nth-child(1)').should('be.visible')
-    cy.get('.sc-frDJqD.jIzkzc').then(($total)=>{
-    var total1=$total.text()
+    let str = ''
+    cy.get('.sc-frDJqD.jIzkzc')
+      .then(total => {
+        str = total
+          .text()
+          .split(' ')
+          .pop()
+        cy.get('.sc-frDJqD.jIzkzc')
+          .should('contain', str)
+        cy.log(str)
+    // var newtotal=total1.substring()
     /*var total2=total1.split('&nbsp;',)
     cy.log(typeof(total2))
     var str1=total1[0]
