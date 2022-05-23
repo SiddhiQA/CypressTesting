@@ -15,7 +15,7 @@ Cypress.Commands.add("dls_import_details", (Brand_Name, Release_Name, Format) =>
     cy.get('a[href="/product_uploads"]').click({ force: true })
     cy.get('.icon-plus').click({ force: true })
     // brand selection:
-    cy.wait(6000)
+ 
     cy.get('#product_upload_brand').select(Brand_Name).should('have.value', '255')
     // release selection
     cy.get('select#product_upload_release').select(Release_Name).should('have.value', '2297')
@@ -36,9 +36,9 @@ Cypress.Commands.add("dls_Valid_File_import", (Upload_file) => {
     //Verify status
     // cy.log(cy.get('.ag-overlay-loading-center').should('be.visible')) 
     // cy.waitUntil(() => cy.get('.ag-overlay-loading-center').should('not.be.visible'))
-    cy.wait(8000)
+ 
     cy.get('.ag-body-horizontal-scroll-viewport').scrollTo("topRight")
-    cy.wait(6000)
+
     cy.get('.ag-row-first > [aria-colindex="7"]').should('be.visible')
     // cy.get('div[row-index="0"]:nth-child(1) > div:nth-child(7)').should('have.text',"Success")
     cy.get('.ag-row-first > [aria-colindex="7"]').should('have.text', "Success")
@@ -150,7 +150,7 @@ Cypress.Commands.add('report_page', () =>
     //Select Report tab 
     cy.get(':nth-child(4) > .nav-link').click()
     cy.get('.sc-hqyNC > :nth-child(1)').should('be.visible')
-    let str = ''
+   /* let str = ''
     cy.get('.sc-frDJqD.jIzkzc')
       .then(total => {
         str = total
@@ -159,19 +159,20 @@ Cypress.Commands.add('report_page', () =>
           .pop()
         cy.get('.sc-frDJqD.jIzkzc')
           .should('contain', str)
-        cy.log(str)
-    // var newtotal=total1.substring()
-    /*var total2=total1.split('&nbsp;',)
-    cy.log(typeof(total2))
-    var str1=total1[0]
-    var str2=total1[1]
-    cy.log(str1)
-    cy.log(str2)*/
-//     cy.log(typeof(total2))
-//     var beforedisc=total2[0];
-//     cy.log(beforedisc)
-//     var afterdisc=total2[1];
-//     cy.log(afterdisc)
- })
+        cy.log(str)*/
+
+   
+        // var newtotal=total1.substring()
+    cy.get('.sc-frDJqD.jIzkzc').then(($total) => {
+    var original_price=  $total.text()
+    var discount_price=  original_price.replace('original_price',' ').split(' ')
+    cy.log(discount_price[0])
+    cy.log(discount_price[1])
+    // var original_price=$total.text()
+    // cy.log(typeof(original_price))
+    // var discount_price=original_price.split(' ')
+    // cy.log(discount_price[0])
+    // cy.log(discount_price[1])
+})
    
 })
